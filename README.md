@@ -60,37 +60,118 @@ You **don’t** need to install or configure tools like Webpack or Babel.<br>
 They are preconfigured and hidden so that you can focus on the code.
 
 
+--------------
+## Folder Structure
 
+### General Overview
+
+```
+root
+├── public
+├── src
+│   │
+│   ├── components
+│   │   ├── Loader
+│   │      ├── __tests__
+│   │      ├── Loader.tsx
+│   │      └── Loader.scss
+│   │   ├── Footer
+│   │      ├── __tests__
+│   │      ├── Footer.tsx
+│   │      └── Footer.scss
+│   │   ├── Header
+│   │
+│   ├── containers
+│   │   ├── Profile
+│   │      ├── __tests__
+│   │      ├── Profile.scss
+│   │      ├── Profile.tsx
+│   │      ├── components
+│   │         ├── ChangeUsernamePassword
+│   │             ├── __tests__
+│   │             ├── ChangeUsernamePassword.tsx
+│   │             ├── ChangeUsernamePassword.scss
+│   │
+│   │         ├── GuestInformation
+│   │             ├── __tests__
+│   │             ├── GuestInformation.tsx
+│   │             └── GuestInformation.scss
+│   │
+│   │         ├── Feedback
+│   │             ├── __tests__
+│   │             ├── Feedback.tsx
+│   │             └── Feedback.scss
+│   │
+│   │         ├── EmergencyContact
+│   │             ├── __tests__
+│   │             ├── EmergencyContact.tsx
+│   │             └── EmergencyContact.scss
+│   │
+│   │      ├── actions
+│   │      ├── reducer
+│   │      ├── services
+│   │      └── model
+│   │   ├── Rewards
+│   │   ├── Trips
+│   │   ├── Favorites
+│   │   ├── Preferences
+│   │   ├── Payment
+│   │   ├── Extras
+│   │   ├── Contact
+│   │   ├── Notifications
+│   │
+│   ├── store
+│   │    └── index.ts
+|   └──
+├── package.json
+└── .gitignore
+```
+
+--------------
+
+## Install SCSS
+
+```sh
+yarn add node-sass
+```
+
+--------------
 ## <a name="create-react-app"></a>Installing Enzyme
 
 To get started with enzyme, you can simply install it with yarn as a dev dependency:
 
 ```bash
-  yarn add enzyme enzyme-adapter-react-16 -D
+  yarn add enzyme enzyme-adapter-react-16 @types/enzyme @types/enzyme-adapter-react-16 -D
 ```
 
 ### Enzyme Configuration
-You need to create a new file at `my-app\src\setupTests.js`
+You need to create a new file at `my-app\src\setupTests.js`:
 
-```js
+```sh
+mkdir my-app/src/setupTests.js
+cd my-app/src/setupTests.js
+```
+
+```ts
 import React from 'react';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 // Tells Enzyme that we are going to use React 16
 configure({ adapter: new Adapter() });
-
 ```
-If you use Typescript:
 
-```ts
-import * as React from 'react';
-import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+--------------
+## Setup Redux
+In order to install redux and use it with react we need to do the following:
 
-enzyme.configure({ adapter: new Adapter() });
-
+```sh
+yarn add redux react-redux -D
 ```
+
+## Setup Redux-Saga
+
+---------------
 
 ## Eslint
 
@@ -219,9 +300,7 @@ performance: {
 },
 ```
 
-## Setup Redux
 
-## Setup Redux-Saga
 
 ## Setup Docker
 
