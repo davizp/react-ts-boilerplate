@@ -45,13 +45,14 @@ yarn eject
 9. [Semver (Semantic versioner)](https://github.com/npm/node-semver)
 10. [CSS Loader](https://webpack.js.org/loaders/css-loader/)
 11. [Mini CSS Extract Plugin (Extracts CSS into separate files)](https://github.com/webpack-contrib/mini-css-extract-plugin)
-12. [Optimize Css Assets Webpack Plugin (minimize the CSS)](https://github.com/NMFR/optimize-css-assets-webpack-plugin)
-13. [Html Webpack Plugin (Launch a Web Server)](https://webpack.js.org/plugins/html-webpack-plugin/)
-14. [Terser Webpack Plugin (Minifies JavaScript)](https://github.com/webpack-contrib/terser-webpack-plugin)
-15. [React App Polyfill (for Promise, fetch, Object assign, Symbol, Array.from,)](https://github.com/GMOD/jbrowse-create-react-app/tree/master/packages/react-app-polyfill)
-16. [Plug and Play Webpack Plugin (Faster instalation without node_modules)](https://github.com/arcanis/pnp-webpack-plugin)
-17. [Webpack Manifest Plugin(Create a manifest file with: files, entrypoints)](https://github.com/danethurber/webpack-manifest-plugin)
-18. [Typescript (optional)](https://github.com/Microsoft/TypeScript)
+12. [CSS Modules](https://github.com/css-modules/css-modules)
+13. [Optimize Css Assets Webpack Plugin (minimize the CSS)](https://github.com/NMFR/optimize-css-assets-webpack-plugin)
+14. [Html Webpack Plugin (Launch a Web Server)](https://webpack.js.org/plugins/html-webpack-plugin/)
+15. [Terser Webpack Plugin (Minifies JavaScript)](https://github.com/webpack-contrib/terser-webpack-plugin)
+16. [React App Polyfill (for Promise, fetch, Object assign, Symbol, Array.from,)](https://github.com/GMOD/jbrowse-create-react-app/tree/master/packages/react-app-polyfill)
+17. [Plug and Play Webpack Plugin (Faster instalation without node_modules)](https://github.com/arcanis/pnp-webpack-plugin)
+18. [Webpack Manifest Plugin(Create a manifest file with: files, entrypoints)](https://github.com/danethurber/webpack-manifest-plugin)
+19. [Typescript (optional)](https://github.com/Microsoft/TypeScript)
 
 
 ### Get Started Immediately
@@ -135,6 +136,12 @@ root
 yarn add node-sass
 ```
 
+
+## How to use [CSS Modules](https://github.com/css-modules/css-modules)
+
+Create a file with extension `MyComponent.modules.scss`
+
+
 --------------
 ## <a name="create-react-app"></a>Installing Enzyme
 
@@ -169,10 +176,62 @@ In order to install redux and use it with react we need to do the following:
 yarn add redux react-redux -D
 ```
 
+```ts
+
+
+```
+
 ## <a name="redux-saga"></a>Setup Redux-Saga
 
 ---------------
 
+## Adding React Router
+
+```sh
+yarn add react-router-dom
+```
+
+```ts
+<Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
+
+        <hr />
+
+        {/*
+          A <Switch> looks through all its children <Route>
+          elements and renders the first one whose path
+          matches the current URL. Use a <Switch> any time
+          you have multiple routes, but you want only one
+          of them to render at a time
+        */}
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+
+```
+
+---------------
 ## Eslint
 
 [Eslint Configuration](https://github.com/facebook/create-react-app/blob/master/packages/eslint-config-react-app/index.js)
@@ -373,15 +432,6 @@ scripts: {
 }
 ```
 
-## Install CSS modules (scss)
-
-Styling Components
-- Inline styles
-    - Radium
-    - Styled-components
-- CSS-modules
-    - classes se pueden repetir
-- import SCSS file por componente
 
 
 ## CSS Config
