@@ -1,9 +1,9 @@
 import React from 'react';
-import './Header.scss';
+import classes from './Header.scss';
 
 const Header: React.FC = () => {
   return (
-    <header className="app-header">
+    <header className={[classes.appHeader, classes.cssModuleTest]}>
       <h1>Welcome to My App!</h1>
       <p>
         Edit <code>src/containers/App.tsx</code> and save to reload.

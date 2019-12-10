@@ -129,7 +129,7 @@ root
 
 --------------
 
-## Install SCSS
+## <a name="scss"></a>Install SCSS
 
 ```sh
 yarn add node-sass
@@ -162,14 +162,14 @@ configure({ adapter: new Adapter() });
 ```
 
 --------------
-## Setup Redux
+## <a name="redux"></a>Setup Redux
 In order to install redux and use it with react we need to do the following:
 
 ```sh
 yarn add redux react-redux -D
 ```
 
-## Setup Redux-Saga
+## <a name="redux-saga"></a>Setup Redux-Saga
 
 ---------------
 
