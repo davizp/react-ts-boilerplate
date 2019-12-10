@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import classes from './App.css';
+import classes from './App.module.scss';
 
 const App: React.FC = () => {
   return (
-    <div className={[classes.app, classes.cssmodule-test]}>
+    <div className={classes.app}>
       <Header />
     </div>
   );
