@@ -35,6 +35,7 @@ yarn eject
 
 ### What is inside Create React App?
 
+
 1. [React](https://reactjs.org/docs/getting-started.html)
 2. [Webpack](https://webpack.js.org/guides/installation/)
 4. [Babel](https://babeljs.io/en/setup)
@@ -44,15 +45,26 @@ yarn eject
 8. [Eslint](<https://webpack.js.org/loaders/eslint-loader/>)
 9. [Semver (Semantic versioner)](https://github.com/npm/node-semver)
 10. [CSS Loader](https://webpack.js.org/loaders/css-loader/)
-11. [Mini CSS Extract Plugin (Extracts CSS into separate files)](https://github.com/webpack-contrib/mini-css-extract-plugin)
-12. [CSS Modules](https://github.com/css-modules/css-modules)
-13. [Optimize Css Assets Webpack Plugin (minimize the CSS)](https://github.com/NMFR/optimize-css-assets-webpack-plugin)
-14. [Html Webpack Plugin (Launch a Web Server)](https://webpack.js.org/plugins/html-webpack-plugin/)
-15. [Terser Webpack Plugin (Minifies JavaScript)](https://github.com/webpack-contrib/terser-webpack-plugin)
-16. [React App Polyfill (for Promise, fetch, Object assign, Symbol, Array.from,)](https://github.com/GMOD/jbrowse-create-react-app/tree/master/packages/react-app-polyfill)
-17. [Plug and Play Webpack Plugin (Faster instalation without node_modules)](https://github.com/arcanis/pnp-webpack-plugin)
-18. [Webpack Manifest Plugin(Create a manifest file with: files, entrypoints)](https://github.com/danethurber/webpack-manifest-plugin)
-19. [Typescript (optional)](https://github.com/Microsoft/TypeScript)
+11. [CSS Modules](https://github.com/facebook/create-react-app/blob/master/packages/react-dev-utils/getCSSModuleLocalIdent.js)
+12. [Mini CSS Extract Plugin (Extracts CSS into separate files)](https://github.com/webpack-contrib/mini-css-extract-plugin)
+13. [CSS Modules](https://github.com/css-modules/css-modules)
+14. [PostCSS Normalize](https://github.com/csstools/postcss-normalize)
+15. [Optimize Css Assets Webpack Plugin (minimize the CSS)](https://github.com/NMFR/optimize-css-assets-webpack-plugin)
+16. [Html Webpack Plugin (Launch a Web Server)](https://webpack.js.org/plugins/html-webpack-plugin/)
+17. [Terser Webpack Plugin (Minifies JavaScript)](https://github.com/webpack-contrib/terser-webpack-plugin)
+18. [React App Polyfill (for Promise, fetch, Object assign, Symbol, Array.from,)](https://github.com/GMOD/jbrowse-create-react-app/tree/master/packages/react-app-polyfill)
+19. [Plug and Play Webpack Plugin (Faster instalation without `node_modules`)](https://github.com/arcanis/pnp-webpack-plugin)
+20. [Webpack Manifest Plugin(Create a manifest file with: files, entrypoints)](https://github.com/danethurber/webpack-manifest-plugin)
+21. [Watch Missing Node Modules Plugin (Avoid restarting webpack when you install a npm module)](https://www.npmjs.com/package/react-dev-utils)
+22. [Case Sensitive Paths Plugin (helps you avoid case sensitive typos)](https://github.com/Urthen/case-sensitive-paths-webpack-plugin)
+23. [Workbox Webpack Plugin (Cache Assets using service worker)](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin)
+24. [Module Scope Plugin (Prevent you use files outside src folder)](https://github.com/facebook/create-react-app/blob/master/packages/react-dev-utils/ModuleScopePlugin.js)
+25. [Module Not Found Plugin (error helper)](https://github.com/facebook/create-react-app/blob/master/packages/react-dev-utils/ModuleNotFoundPlugin.js)
+26. [Typescript Type Checking](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin)
+27. [Typescript Formatter]()
+28. [Typescript](https://github.com/Microsoft/TypeScript)
+
+
 
 
 ### Get Started Immediately
@@ -62,6 +74,7 @@ They are preconfigured and hidden so that you can focus on the code.
 
 
 --------------
+
 ## Folder Structure
 
 ### General Overview
@@ -87,6 +100,7 @@ root
 │   │      ├── __tests__
 │   │      ├── Profile.scss
 │   │      ├── Profile.tsx
+│   │      ├── ProfileRouter.tsx
 │   │      ├── components
 │   │         ├── ChangeUsernamePassword
 │   │             ├── __tests__
@@ -141,6 +155,34 @@ yarn add node-sass
 
 Create a file with extension `MyComponent.modules.scss`
 
+```scss
+// MyComponent.modules.scss
+
+.myComponent {
+  /* Styles goes here */
+}
+```
+
+
+
+```tsx
+// MyComponent.tsx
+
+import React from 'react';
+import classes from './MyComponent.module.scss';
+
+const MyComponent: React.FC = () => {
+  return (
+    <div className={classes.myComponent}>
+      <h2>My Component.</h2>
+    </div>
+  );
+}
+
+export default MyComponent;
+
+```
+
 
 --------------
 ## <a name="create-react-app"></a>Installing Enzyme
@@ -160,6 +202,8 @@ cd my-app/src/setupTests.js
 ```
 
 ```ts
+// my-app/src/setupTests.js
+
 import React from 'react';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -172,14 +216,169 @@ configure({ adapter: new Adapter() });
 ## <a name="redux"></a>Setup Redux
 In order to install redux and use it with react we need to do the following:
 
+
+### Folder Structure
+```
+src
+  containers
+    |_Employees
+      |_ reducers
+        |_ employees.ts
+        |_ index.ts (imported at /my-app/src/store/rootReducer)
+      |_ sagas
+        |_ employees.ts
+        |_ index.ts (imported at /my-app/src/store/rootSaga)
+      |_ actions
+        |_ types (redux types y typescript types)
+        |_ index.ts
+  store
+    |_ reducers (rootReducer) (import all reducers from /src/containers/*/reducers/index.ts)
+    |_ sagas (import all watchers from /src/containers/*/reducers/index.ts)
+    setupStore.js
+```
+
+### Step 1: Install Packages
+
+Notes: We don't need to insta @types/redux since Redux provides its own type definitions.
+
+
+Let's install the following packages:
+- Redux
+- React Redux
+- Redux Saga
+
+We need to install typescript @types for:
+- React Redux
+
+You will need to install an extension for Chrome (optional):
+- [Chrome Redux Devtools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+
 ```sh
-yarn add redux react-redux -D
+# Packages
+yarn add redux react-redux redux-saga -D
+
+# TS Types
+yarn add @types/react-redux
+
+# Redux DevTools
+yarn add redux-devtools react-redux -D
+
+```
+
+### Step : Create a Redux Actions
+
+### Step : Create a Redux Reducer
+
+Let's create the root reducer:
+```sh
+cd /my-app/src/
+
+mkdir reducers
+
+touch index.ts
+```
+
+This is the main root reducer:
+```ts
+// PATH: /my-app/src/store/reducers/index.ts
+
+import { combineReducers } from 'redux';
+
+// Example: MyContainerComponentReducer
+import { MyContainerComponentReducer } from '../containers/MyContainerComponent/reducer';
+
+const rootReducer = combineReducers({
+  MyContainerComponentReducer,
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
+
+```
+
+Any other else will be added in the containers
+
+```ts
+// PATH: /my-app/src/containers/MyContainerComponent/index.ts
+
+import { SUCCESS_EMPLOYEES, EmployeesActionTypes } from '../actions/types';
+import { Employees } from '../types/Employee';
+
+const initialState: Employees[] = [];
+  
+const reducer = (state = initialState, action: EmployeesActionTypes): Employees[] => {
+    switch (action.type) {
+       case SUCCESS_EMPLOYEES:
+
+         return [
+            ...action.employees,
+         ];
+       default:
+          return state;
+     }
+  };
+  
+  export default reducer;
+  
+```
+
+### Step : Create the Redux Store
+
+Create a new folder at:
+
+```sh
+mkdir /my-app/src/store
+cd /my-app/src/store/
+
+touch setupStore.ts
+touch index.ts
+```
+
+
+```ts
+// PATH: /my-app/src/store/setupStore.ts
+
 ```
 
 ```ts
-
+// PATH: /my-app/src/store/index.ts
 
 ```
+
+### Step : Bind Redux and React
+```sh
+mkdir /my-app/src/containers/Root/
+cd /my-app/src/containers/Root/
+
+touch /my-app/src/containers/Root/Root.tsx
+```
+
+```tsx
+
+// PATH: /my-app/src/containers/Root/Root.ts
+
+import React from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from '../App/App'
+
+interface IProps {
+    store: any
+};
+
+const Root = ({ store } : IProps) => (
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>
+)
+
+export default Root;
+
+```
+
 
 ## <a name="redux-saga"></a>Setup Redux-Saga
 
@@ -232,12 +431,13 @@ yarn add react-router-dom
 ```
 
 ---------------
+
 ## Eslint
 
 [Eslint Configuration](https://github.com/facebook/create-react-app/blob/master/packages/eslint-config-react-app/index.js)
 
 
-
+---------------
 
 ## Install Prettier
 
@@ -248,6 +448,9 @@ There you go:
 ```sh
 yarn add --dev --exact prettier
 yarn add --dev eslint-plugin-prettier
+
+# Only works with git
+yarn add husky lint-staged
 ```
 
 ### Step 2: Install the Prettier and ESLint VS Code Extensions
@@ -290,7 +493,27 @@ You most likely want to apply the Prettier formatting whenever you save your fil
 "editor.formatOnSave": true
 ```
 
+### Optional if you are using git
 
+Husky uses git pre-commit hook to run prettier when you add files.
+```json
+// ./package.json
+
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+},
+"lint-staged": {
+  "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "prettier --single-quote --write",
+    "git add"
+  ]
+},
+"prettier": {
+  "singleQuote": true
+}
+```
 [Configuration File · Prettier](https://prettier.io/docs/en/configuration.html)
 ```json
 {
