@@ -1,9 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
-// import { fetchDataWatcher } from './employees';
+import { fetchDataWatcher } from './employees';
 
 function* rootSaga() {
     yield all([
-        // fork(fetchDataWatcher),
+        fork(fetchDataWatcher),
     ]);
 }
 

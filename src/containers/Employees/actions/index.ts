@@ -12,6 +12,8 @@ export function fetchEmployees() {
 export function successEmployees(employees: Employees[]){
   return {
     type: Types.SUCCESS_EMPLOYEES,
-    employees,
+    payload: {
+      employees
+    },
   }
 }

@@ -58,7 +58,7 @@ class HomePage extends React.Component<iProps, {}> {
 }
 
 const mapStateToProps = (state: any) => {
-  const { employees } = state;
+  const { employees } = state.employeesReducer;
 
   // console.log('state', state);
 

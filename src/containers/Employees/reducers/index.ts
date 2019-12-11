@@ -1,19 +1,14 @@
-import Types from '../actions/types';
-import { Employees } from '../models/';
+/**
+*  FILE: CONTAINERS'S REDUX ROOT REDUCER
+**/
 
+import { combineReducers } from 'redux';
+import employees from './employees';
 
-const initialState: Employees[] = [];
+const rootReducer = combineReducers({
+   employees,
+});
 
-const reducer = (state = initialState, action: any): Employees[] => {
-    switch (action.type) {
-       case Types.SUCCESS_EMPLOYEES:
+// export type RootState = ReturnType<typeof rootReducer>;
 
-         return [
-            ...action.employees,
-         ];
-       default:
-          return state;
-     }
-  };
-
-export default reducer;
+export default rootReducer;
