@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers';
+import rootReducer, { RootState } from './reducers/';
 import rootSaga from './sagas';
 
-function setupStore(initialState: any) {
+function setupStore(initialState = {}) {
 
   // Middleware
   const sagaMiddleware = createSagaMiddleware();
@@ -32,8 +32,6 @@ function setupStore(initialState: any) {
   return store;
 }
 
-export type AppState = ReturnType<typeof rootReducer>;
+// export type AppState = ReturnType<typeof rootReducer>;
 
 export default setupStore;
-
-export default {};
