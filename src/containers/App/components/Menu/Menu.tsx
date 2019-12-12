@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classes from './Menu.module.scss';
 
 const Menu: React.FC = () => {
   return (
     <ul className={classes.menu}>
       <li>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a href="/employees/">Employees</a>
+        <Link to="/employees/">Employees</Link>
       </li>
       <li>
-        <a href="/profile/">Profile</a>
+        <Link to="/profile/">Profile</Link>
       </li>
     </ul>
   );
