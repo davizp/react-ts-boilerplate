@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import classes from './App.module.scss';
-import MainRoutes from './AppRoutes';
+import AppRoutes from './AppRoutes';
 import Menu from './components/Menu/Menu';
 
 const App: React.FC = () => {
@@ -9,7 +9,7 @@ const App: React.FC = () => {
     <div className={classes.app}>
       <Header />
       <Menu />
-      <MainRoutes />
+      <AppRoutes />
     </div>
   );
 };
