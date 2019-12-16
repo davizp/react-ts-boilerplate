@@ -13,6 +13,6 @@ const AppNavigator: React.FC = () => {
       </Route>
     </Switch>
   );
-}
+};
 
 export default AppNavigator;

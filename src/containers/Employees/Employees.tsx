@@ -4,24 +4,24 @@ import { connect } from 'react-redux';
 import { Employees } from './models/';
 
 interface iProps {
-  fetchEmployees: any,
-  employees: Employees[]
-};
+  fetchEmployees: any;
+  employees: Employees[];
+}
 
 class HomePage extends React.Component<iProps, {}> {
-
   _renderEmployees = () => {
-
     const { employees = [] } = this.props;
 
-    const employeesRow = employees.map((employee, index) => (
-      index < 15) && (
-      <tr key={`employee-${employee.id}`}>
-        <th>{employee.employee_name}</th>
-        <th>{employee.employee_salary}</th>
-        <th>{employee.employee_age}</th>
-      </tr>
-    ));
+    const employeesRow = employees.map(
+      (employee, index) =>
+        index < 15 && (
+          <tr key={`employee-${employee.id}`}>
+            <th>{employee.employee_name}</th>
+            <th>{employee.employee_salary}</th>
+            <th>{employee.employee_age}</th>
+          </tr>
+        )
+    );
 
     return (
       <table>
@@ -32,26 +32,19 @@ class HomePage extends React.Component<iProps, {}> {
             <th>Age</th>
           </tr>
         </thead>
-        <tbody>
-          {employeesRow}
-        </tbody>
+        <tbody>{employeesRow}</tbody>
       </table>
     );
-  }
+  };
 
   render() {
-
     const { fetchEmployees } = this.props;
 
     return (
       <div>
         Home Page
-
         {this._renderEmployees()}
-
-        <button onClick={fetchEmployees}>
-          Click Me!
-        </button>
+        <button onClick={fetchEmployees}>Click Me!</button>
       </div>
     );
   }
@@ -63,17 +56,15 @@ const mapStateToProps = (state: any) => {
   // console.log('state', state);
 
   return { employees };
-}
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     fetchEmployees: () => {
       // console.log('dispatch', dispatch);
-      dispatch(fetchEmployees())
+      dispatch(fetchEmployees());
     },
-  }
+  };
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

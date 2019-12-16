@@ -4,10 +4,7 @@ import { all, fork } from 'redux-saga/effects';
 import employeesSaga from '../../containers/Employees/sagas';
 
 function* rootSaga() {
-    yield all([
-        fork(employeesSaga),
-    ]);
+  yield all([fork(employeesSaga)]);
 }
-
 
 export default rootSaga;

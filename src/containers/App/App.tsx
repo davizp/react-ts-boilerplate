@@ -12,6 +12,6 @@ const App: React.FC = () => {
       <MainRoutes />
     </div>
   );
-}
+};
 
 export default App;

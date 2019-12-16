@@ -1,6 +1,6 @@
 /**
-*  FILE: REDUX ROOT REDUCER
-**/
+ *  FILE: REDUX ROOT REDUCER
+ **/
 
 import { combineReducers } from 'redux';
 
