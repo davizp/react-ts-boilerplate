@@ -1,9 +1,12 @@
+@import "../../../../scss/abstract/variables";
+
 .menu {
   display: flex;
   padding: 1rem;
   justify-content: space-around;
   background: #383838;
-  
+  font: 3rem $font-os-regular;
+
   li {
     list-style-type: none;
   }

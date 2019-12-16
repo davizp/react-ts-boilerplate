@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import Root from './containers/Root/Root';
 import * as serviceWorker from './serviceWorker';
 import setupStore from './store/setupStore';
+// import 'react-app-polyfill/ie11';
 
 const store = setupStore({});
 

@@ -13,7 +13,7 @@ $path: (
 /*==== Scafolding ====*/
 $body-bg               : #ededed;
 $link-color            : color(grey, darker-2) !default;
-$link-hover-color      : lighten($link-color, 15%) !default;
+// $link-hover-color      : lighten($link-color, 15%) !default;
 $link-hover-decoration : none !default;
 
 $spacer                : 1rem !default;
@@ -87,6 +87,7 @@ $font-os-italic             : 'opensans-italic';
 $font-os-light              : 'opensans-light';
 $font-os-light-italic       : 'opensans-light-italic';
 $font-os-regular            : 'opensans-regular';
+$fontOSRegular              : 'opensans-regular';
 $font-os-semi-bold          : 'opensans-semi-bold';
 $font-os-semi-bold-italic   : 'opensans-semi-bold-italic';
 

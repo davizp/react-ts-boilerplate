@@ -3,9 +3,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // Containers
-import HomeRouter from './Home/HomeRouter';
-import ProfileRouter from './Profile/ProfileRouter';
-import EmployeesRouter from './Employees/EmployeesRouter';
+import HomeRouter from '../Home/HomeRouter';
+import ProfileRouter from '../Profile/ProfileRouter';
+import EmployeesRouter from '../Employees/EmployeesRouter';
 
 const AppNavigator: React.FC = () => {
   return (

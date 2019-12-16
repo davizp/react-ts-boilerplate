@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import classes from './App.module.scss';
-import MainRoutes from '../MainRoutes';
+import MainRoutes from './AppRoutes';
 import Menu from './components/Menu/Menu';
 
 const App: React.FC = () => {

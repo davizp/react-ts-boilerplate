@@ -16,5 +16,5 @@ $fontFams:
   $font-os-semi-bold-italic;
 
 @each $fontFam in $fontFams {
-  @include font-face($fontFam, unquote('../../../fonts')/unquote($fontFam));
+  @include font-face($fontFam, unquote('../../fonts')/unquote($fontFam));
 }
