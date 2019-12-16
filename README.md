@@ -3,9 +3,15 @@
 This is a documentation that will help you with the setup of a project from scratch, throught this document you will find several instructions of how to setup different packages that you will need to install to get started.
 
 ## Overview
-1. [Install Create React App](#create-react-app)
-2. [Install Enzyme](#enzyme)
-3. 
+1. React
+2. Redux-Saga
+3. SCSS / CSS Modules
+4. Jest /Enzyme
+5. React Router
+6. Docker
+7. Typescript
+8. Axios
+9. React Flexbox Grid
 
 ## <a name="create-react-app"></a>Install Create React App
 
@@ -125,6 +131,7 @@ root
 │   │      ├── actions
 │   │      ├── reducer
 │   │      ├── services
+│   │      ├── hooks
 │   │      └── model
 │   │   ├── Rewards
 │   │   ├── Trips
@@ -158,13 +165,15 @@ Create a file with extension `MyComponent.modules.scss`
 ```scss
 // MyComponent.modules.scss
 
+@import "../../../../scss/abstract/variables";
+
 .myComponent {
   /* Styles goes here */
 }
 ```
 
 
-
+React Component:
 ```tsx
 // MyComponent.tsx
 
@@ -346,7 +355,7 @@ touch index.ts
 
 ```
 
-### Step : Bind Redux and React
+### Step : Bind Redux Store to Redux Provider
 ```sh
 mkdir /my-app/src/containers/Root/
 cd /my-app/src/containers/Root/
@@ -363,11 +372,11 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../App/App'
 
-interface IProps {
+interface RootProps {
     store: any
 };
 
-const Root = ({ store } : IProps) => (
+const Root = ({ store } : RootProps) => (
   <Provider store={store}>
     <Router>
       <App />
@@ -382,6 +391,24 @@ export default Root;
 
 ## <a name="redux-saga"></a>Setup Redux-Saga
 
+Create the main Root Saga:
+
+```ts
+// PATH: /my-app/src/store/saga/index.ts
+
+import { all, fork } from 'redux-saga/effects';
+
+// Import All Sagas inside the containers - '../../containers/*/sagas'
+import employeesSaga from '../../containers/Employees/sagas';
+
+function* rootSaga() {
+  yield all([fork(employeesSaga)]);
+}
+
+export default rootSaga;
+```
+
+
 ---------------
 
 ## Adding React Router
@@ -390,43 +417,62 @@ export default Root;
 yarn add react-router-dom
 ```
 
-```ts
-<Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
+Create the Root Component that will handle the Redux Provider and the React Router.
 
-        <hr />
+```tsx
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from '../App/App';
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </div>
+interface IProps {
+  store: any;
+}
+
+const Root = ({ store }: IProps) => (
+  <Provider store={store}>
+    <Router>
+      <App />
     </Router>
+  </Provider>
+);
+
+export default Root;
+
+
+```
+
+Let's Create the main router:
+```tsx
+// PATH: /my-app/src/containers/App/AppRouter.tsx
+
+// Dependencies
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+// Containers
+import HomeRouter from '../Home/HomeRouter';
+import ProfileRouter from '../Profile/ProfileRouter';
+import EmployeesRouter from '../Employees/EmployeesRouter';
+
+const AppNavigator: React.FC = () => {
+  return (
+    <Switch>
+      <Route exact path="/">
+        <HomeRouter />
+      </Route>
+      <Route path="/profile">
+        <ProfileRouter />
+      </Route>
+      <Route path="/employees">
+        <EmployeesRouter />
+      </Route>
+    </Switch>
+  );
+};
+
+export default AppNavigator;
+
 
 ```
 
@@ -461,7 +507,9 @@ yarn add husky lint-staged
 ### Step 3: Create the Prettier and ESLint Configuration files
 
 
-Create an .eslintrc file with the following contents:
+Create an `.eslintrc` file with the following contents.
+
+**Example:**
 
 ```json
 {
@@ -481,8 +529,11 @@ If you are not happy with the default Prettier configuration then you can create
 ```json
 {
   "singleQuote": true,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "jsxBracketSameLine": true,
+  "printWidth": 80
 }
+
 
 ```
 
@@ -529,50 +580,13 @@ Husky uses git pre-commit hook to run prettier when you add files.
 ```
 
 -----------------------
-TODO: Delete this section
-
-### Prettier React Configuration
-You need to create a new file at `my-app\.prettierrc.js`
-const esNextPaths = [
-  // Source files
-  'src/*/*.js',
-];
-
-module.exports = {
-  bracketSpacing: false,
-  singleQuote: true,
-  jsxBracketSameLine: true,
-  trailingComma: 'es5',
-  printWidth: 80,
-  parser: 'babylon',
-
-  overrides: [
-    {
-      files: esNextPaths,
-      options: {
-        trailingComma: 'all',
-      },
-    },
-  ],
-};
-
-
-
-
-packages/react-devtools-core/dist
-packages/react-devtools-extensions/chrome/build
-packages/react-devtools-extensions/firefox/build
-
------------------------
-
-
-
 
 ## Implement Webpack Performance Budgets
 
-[Setting performance budgets with webpack](https://web.dev/codelab-setting-performance-budgets-with-webpack/)
+This section was not installed yet.
 
 [Performance budgets 101](https://web.dev/performance-budgets-101/)
+[Setting performance budgets with webpack](https://web.dev/codelab-setting-performance-budgets-with-webpack/)
 
 ```json
 performance: {
@@ -583,15 +597,18 @@ performance: {
 ```
 
 
+-----------------------
 
 ## Setup Docker
 
-### Step 1: Download Docker
-### Step 2: Create an account
+### Step 1: [Download Docker](https://docs.docker.com/docker-for-windows/install/)
+### Step 2: [Create an account](https://hub.docker.com/signup)
 ### Step 3: Install Docker Globally
 
 ## Setup DockerFile
 First we need to go to a series of steps before we get started.
+
+[Docker Cheat Sheet](https://www.docker.com/sites/default/files/d8/2019-09/docker-cheat-sheet.pdf)
 
 ### Step 1: Create Dockerfile
 ```dockerfile
@@ -655,24 +672,19 @@ scripts: {
 }
 ```
 
+------------------------
 
 
-## CSS Config
+## SCSS
 
+Global SCSS files will be saved at: `/my-app/src/scss/*`
 
-### Add Grid 24 cols
-
-### Add Fonts
-
-### Add Typography
-
-### Add Icons
-
-### Normalize
-
-### Basics CSS file (Rems)
-
-### Combine Media Queries (TODO: check the webpack plugin)
+  * [React Flexbox Grid](http://roylee0704.github.io/react-flexbox-grid/)
+  * Open Sans Fonts
+  * Typography
+  * Custom Icons
+  * Normalize
+  * SCSS in Rems `10px === 1rem`.
 
 ### Add CSS helper file
 Breaking Points:
@@ -680,12 +692,62 @@ Breaking Points:
   768px - Tablet
   320px   - Mobile
 
-### CSS Linter
-TODO: Check [StylelintWebpackPlugin](https://webpack.js.org/plugins/stylelint-webpack-plugin/) and Prettier
+------------------------
+## Connect to EndPoints
 
+This project has installed axios, we will create a dataservice per container to an specific section of the website.
 
+The `API_URL` will be saved in the `/my-app/.env` file, this file shouldn't be committed to the repository.
 
+Example:
+```ts
+/**
+ * DataService Example
+ */
+import axios, { AxiosInstance } from 'axios';
 
+interface DataService {
+  httpService: AxiosInstance,
+}
+
+class DataService {
+  constructor() {
+    const baseURL = process.env.API_URL || '';
+
+    this.httpService = axios.create({
+      baseURL: `${baseURL}/employees`,
+    });
+  }
+
+  findEmployees(filter: string) {
+    return this.httpService.get('/find-employees', {
+      params: {
+        filter,
+      },
+    });
+  }
+}
+
+export default DataService;
+```
+
+------------------------
+## TypeScript Interfaces
+
+Create a folder at the containers and add there any interface that you need.
+
+**Example:**
+
+```ts
+export interface Employees {
+  employee_age: string;
+  employee_name: string;
+  employee_salary: string;
+  id: string;
+  profile_image: string;
+}
+
+```
 
 
 
