@@ -1,0 +1,155 @@
+/*
+// Utilities
+// ------------------------------------------------ */
+
+/*==== General ====*/
+.util-pull-right {
+  float: right;
+}
+.util-pull-left {
+  float: left;
+}
+.util-pull-none {
+  float: none;
+}
+
+.util-clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// erase and replace by 'between-($breakpoint)' and 'center-($breakpoint)'
+.util-space-between {
+  justify-content: space-between;
+}
+
+.util-justify-center {
+  justify-content: center;
+}
+
+/*==== Postitioning ====*/
+.util-center {
+  margin: auto auto;
+}
+.util-txt-center {
+  text-align: center;
+}
+.util-txt-right {
+  text-align: right;
+}
+.util-txt-left {
+  text-align: left;
+}
+
+/*==== Toggling content ====*/
+.util-invisible {
+  visibility: hidden;
+}
+.util-no-flow {
+  position: fixed;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.util-hide {
+  display: none;
+}
+.util-show {
+  display: block !important;
+}
+.util-disabled {
+  background: color(grey, 'lighter-1');
+}
+.util-no-flow-submit {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.util-no-flow-x {
+  overflow-x: hidden;
+}
+.util-xflow {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*==== Positioning ====*/
+.util-affix {
+  position: fixed;
+}
+.util-pr {
+  position: relative;
+}
+.util-abs {
+  position: absolute;
+}
+.util-center {
+  margin: auto auto;
+}
+
+/*==== Spacing ====*/
+.util-no-padding {
+  padding: 0;
+}
+
+.util-no-margin {
+  margin: 0;
+}
+
+.util-no-side-margins {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/*==== Images ====*/
+.util-img-responsive {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.img-responsive-v2 {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+/*==== Text ====*/
+.util-capitalize {
+  text-transform: capitalize;
+}
+.util-uppercase {
+  text-transform: uppercase;
+}
+.util-blue-link {
+  color: color(blue, 'default');
+}
+
+/*==== Cursor ==== */
+.util-pointer {
+  cursor: pointer;
+}
+
+/*==== Backgrounds ====*/
+.util-bg-black {
+  background: #000;
+}
+
+/*==== animations ====*/
+.util-rotate-down {
+  display: inline-block;
+  transform: rotate(0);
+  transition: 0.09s all ease-in;
+
+  &.active {
+    transform: rotate(90deg);
+  }
+}

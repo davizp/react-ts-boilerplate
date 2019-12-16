@@ -1,0 +1,55 @@
+/*
+// Colors Abstract
+// ------------------------------------------------ */
+
+
+$blue: (
+  darker-2: #003a62,
+  darker-1: #28caff,
+  default: #00b8f4,
+  lighter-1: #d8ecf3,
+);
+
+$white: (
+  darker-1: #f6f6f6,
+  default: #fff,
+);
+
+$grey: (
+  darker-4: #000,
+  darker-3: #1a1a1a,
+  darker-2: #373737,
+  darker-1: #666,
+  default: #797979,
+  lighter-1: #acacac,
+  lighter-2: #ddd,
+  lighter-3: #ededed,
+  lighter-4: #f3f3f8,
+);
+
+$green: (
+  default: #88c240
+);
+
+$red: (
+  default: #ed1c24,
+);
+
+$pink: (
+  default: #d282aa,
+);
+
+$shades: (
+  black: #000,
+  white: #fff,
+  transparent: transparent,
+);
+
+$colors: (
+  shades: $shades,
+  grey: $grey,
+  blue: $blue,
+  red: $red,
+  pink: $pink,
+  white: $white,
+);

@@ -1,0 +1,154 @@
+/*
+// Variables
+// ------------------------------------------------ */
+
+/*==== Paths ====*/
+$assets-path           : '/assets';
+$path: (
+  img                  : '//cdn.mycdnurl.com/',
+  fonts                : '#{$assets-path}/fonts',
+  svg                  : '#{$assets-path}/svg'
+);
+
+/*==== Scafolding ====*/
+$body-bg               : #ededed;
+$link-color            : color(grey, darker-2) !default;
+$link-hover-color      : lighten($link-color, 15%) !default;
+$link-hover-decoration : none !default;
+
+$spacer                : 1rem !default;
+$radius: (
+  sm                   : .3rem,
+  md                   : .5rem,
+  lg                   : 1rem
+);
+
+$z-layers: (
+  way-back             : -9999,
+  before               : 0,
+  default              : 1,
+  after                : 2,
+  relevant             : 3,
+  important            : 4,
+  critical             : 5,
+  dropdown             : 3000,
+  overlay              : 4000,
+  modal                : 4001,
+  way-top              : 9999
+);
+
+$transition-duration   : .3s;
+
+/*==== Components ====*/
+$padding: (
+  base: (
+    vertical           : 6px,
+    horizontal         : 12px
+  ),
+  lg: (
+    vertical           : 10px,
+    horizontal         : 16px
+  ),
+  md: (
+    vertical           : 7px,
+    horizontal         : 14px
+  ),
+  sm: (
+    vertical           : 5px,
+    horizontal         : 10px
+  ),
+  xs: (
+    vertical           : 1px,
+    horizontal         : 5px
+  )
+);
+
+/*==== Forms ====*/
+$input-padding-x       : 1rem !default;
+$input-padding-y       : .8rem !default;
+$input-line-height     : 1.25 !default;
+
+/*==== Typography ====*/
+$font-cache            : 'v=#{unique-id()}';
+$font-icons-name       : 'boilerplate-icon-font';
+
+/**
+  os-light
+  os-regular
+  os-semibold
+  os-bold
+*/
+
+$font-os-bold               : 'opensans-bold';
+$font-os-bold-italic        : 'opensans-bold-italic';
+$font-os-extra-bold         : 'opensans-extra-bold';
+$font-os-extra-bold-italic  : 'opensans-extra-bold-italic';
+$font-os-italic             : 'opensans-italic';
+$font-os-light              : 'opensans-light';
+$font-os-light-italic       : 'opensans-light-italic';
+$font-os-regular            : 'opensans-regular';
+$font-os-semi-bold          : 'opensans-semi-bold';
+$font-os-semi-bold-italic   : 'opensans-semi-bold-italic';
+
+$font-icons            : $font-icons-name !default;
+$font-arial            : Arial, Helvetica, sans-serif !default;
+$font-base             : $font-os-regular !default;
+$font-color            : color(grey, darker-2) !default;
+$font-weight           : 400 !default;
+$font-size             : 1.5rem !default;
+$line-height           : 2rem !default;
+
+$font-size-h1          : 0rem !default;
+$font-size-h2          : 8.5rem !default;
+$font-size-h3          : 6.5rem !default;
+$font-size-h4          : 5rem !default;
+$font-size-h5          : 3.6rem !default;
+$font-size-h6          : 2rem !default;
+
+$headings-margin       : (1rem / 2) !default;
+$headings-font-family  : $font-os-light !default;
+$headings-font-weight  : 500 !default;
+$headings-line-height  : 1.1 !default;
+$headings-color        : inherit !default;
+
+/*==== Breakpoints ====*/
+$breakpoints: (
+  sm               : 320px,  /* mobile */
+  md               : 768px,  /* tablet */
+  lg               : 1164px, /* desktop */
+  xxl              : 1400px  /* 4K */
+);
+
+$breakpoints-max: (
+  sm               : 767px,
+  md               : 1163px, /* tablet */
+  lg               : 1399px, /* desktop */
+  xxl              : 3840px  /* 4k */
+);
+
+$breakpoints-min: (
+  sm               : 320px, /* mobile */
+  md               : 768px, /* tablet */
+  lg               : 1164px, /* desktop */
+);
+
+/*==== Grid System ====*/
+$container-width       : 1180px;
+$width-sm              : 30 !default;
+$width-md              : 75 !default;
+$width-lg              : 80 !default;
+$width-xxl             : 100 !default;
+
+$viewport-sm           : map-get($breakpoints, sm) !default;
+$viewport-md           : map-get($breakpoints, md) !default;
+$viewport-lg           : map-get($breakpoints, lg) !default;
+$viewport-xxl          : map-get($breakpoints, xxl) !default;
+
+$viewport-sm-max           : map-get($breakpoints-max, sm) !default;
+$viewport-md-max           : map-get($breakpoints-max, md) !default;
+$viewport-lg-max           : map-get($breakpoints-max, lg) !default;
+
+$viewport-sm-min           : map-get($breakpoints-min, sm) !default;
+$viewport-md-min           : map-get($breakpoints-min, md) !default;
+$viewport-lg-min           : map-get($breakpoints-min, lg) !default;
+

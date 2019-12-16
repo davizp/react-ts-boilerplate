@@ -1,12 +1,14 @@
 /**
-*  FILE: REDUX ROOT REDUCER
-**/
+ *  FILE: REDUX ROOT REDUCER
+ **/
 
 import { combineReducers } from 'redux';
-// import { MyContainerComponentReducer } from '../containers/MyContainerComponent/reducer';
+
+// All Reducers - '../../containers/*/reducers'
+import employeesReducer from '../../containers/Employees/reducers';
 
 const rootReducer = combineReducers({
-  // MyContainerComponentReducer,
+  employeesReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

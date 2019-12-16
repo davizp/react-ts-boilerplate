@@ -1,0 +1,94 @@
+/*
+// Responsive Utils
+// ------------------------------------------------ */
+
+$sm: 'sm' !default;
+$md: 'md' !default;
+$lg: 'lg' !default;
+$xxl: 'xxl' !default;
+
+$sizes: $sm $md $lg $xxl !default;
+
+@each $bp in map-keys($breakpoints) {
+  .hidden-#{$bp}-up {
+    @media (min-width: map-get($breakpoints, $bp)) {
+      display: none !important;
+    }
+  }
+  .hidden-#{$bp}-down {
+    @media (max-width: map-get($breakpoints, $bp) - 1) {
+      display: none !important;
+    }
+  }
+  .visible-#{$bp}-up {
+    @media (max-width: map-get($breakpoints, $bp) - 1) {
+      display: none !important;
+    }
+  }
+  .visible-#{$bp}-down {
+    @media (min-width: map-get($breakpoints, $bp)) {
+      display: none !important;
+    }
+  }
+
+  @each $size in $sizes {
+    @media (min-width: map-get($breakpoints, $size)) and (max-width: map-get($breakpoints-max, $size)) {
+      .d-#{$size}-none {
+        display: none !important;
+      }
+      .d-#{$size}-inline {
+        display: inline !important;
+      }
+      .d-#{$size}-inline-block {
+        display: inline-block !important;
+      }
+      .d-#{$size}-block {
+        display: block !important;
+      }
+      .d-#{$size}-table {
+        display: table !important;
+      }
+      .d-#{$size}-table-row {
+        display: table-row !important;
+      }
+      .d-#{$size}-table-cell {
+        display: table-cell !important;
+      }
+      .d-#{$size}-flex {
+        display: flex !important;
+      }
+      .d-#{$size}-inline-flex {
+        display: inline-flex !important;
+      }
+    }
+  }
+}
+
+// For all sizes
+.d-none {
+  display: none !important;
+}
+.d-inline {
+  display: inline;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.d-block {
+  display: block;
+}
+.d-table {
+  display: table;
+}
+.d-table-row {
+  display: table-row;
+}
+.d-table-cell {
+  display: table-cell;
+}
+.d-flex {
+  display: flex;
+}
+.d-inline-flex {
+  display: inline-flex;
+}

@@ -1,0 +1,20 @@
+/*
+// Font Families
+// ------------------------------------------------ */
+
+$fontFams:
+  $font-icons,
+  $font-os-bold,
+  $font-os-bold-italic,
+  $font-os-extra-bold,
+  $font-os-extra-bold-italic,
+  $font-os-italic,
+  $font-os-light,
+  $font-os-light-italic,
+  $font-os-regular,
+  $font-os-semi-bold,
+  $font-os-semi-bold-italic;
+
+@each $fontFam in $fontFams {
+  @include font-face($fontFam, unquote('../../../fonts')/unquote($fontFam));
+}

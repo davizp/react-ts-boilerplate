@@ -1,11 +1,10 @@
 import { all, fork } from 'redux-saga/effects';
-// import { fetchDataWatcher } from './employees';
+
+// All Sagas - '../../containers/*/sagas'
+import employeesSaga from '../../containers/Employees/sagas';
 
 function* rootSaga() {
-    yield all([
-        // fork(fetchDataWatcher),
-    ]);
+  yield all([fork(employeesSaga)]);
 }
-
 
 export default rootSaga;

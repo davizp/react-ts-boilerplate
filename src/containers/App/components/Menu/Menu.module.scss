@@ -1,0 +1,21 @@
+.menu {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+  background: #383838;
+  
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    padding: 1rem 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+      background: #484848;
+    }
+  }
+}

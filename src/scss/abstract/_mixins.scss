@@ -1,0 +1,209 @@
+/*
+// Mixins
+// ------------------------------------------------ */
+
+// Media Query helper, uses the $breakpoints map
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin respond-to-max($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+@mixin button-variant(
+  $color,
+  $background,
+  $border,
+  $hover: darken($background, 10%)
+) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:focus,
+  &.focus {
+    color: $color;
+    background-color: darken($background, 10%);
+    border-color: darken($border, 25%);
+  }
+  &:hover {
+    color: $color;
+    background-color: $hover;
+    border-color: darken($border, 12%);
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-color: darken($background, 10%);
+    border-color: darken($border, 12%);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: $color;
+      background-color: darken($background, 17%);
+      border-color: darken($border, 25%);
+    }
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: $background;
+      border-color: $border;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}
+
+// Button sizes
+@mixin button-size(
+  $padding-vertical,
+  $padding-horizontal,
+  $font-size,
+  $line-height,
+  $border-radius
+) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+// clearfix
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Chevron
+@mixin chevron-size($chevron-size: 10px, $border-width: 2px) {
+  height: $chevron-size;
+  width: $chevron-size;
+  border-width: $border-width $border-width 0 0;
+}
+
+//
+// String Replace
+// --------------------------------------------------------
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
+//
+// Remove from list
+// --------------------------------------------------------
+@function rm-nth($list, $index) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @warn "$index: #{quote($index)} is not a number for `remove-nth`.";
+  } @else if $index == 0 {
+    @warn "List index 0 must be a non-zero integer for `remove-nth`.";
+  } @else if abs($index) > length($list) {
+    @warn "List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.";
+  } @else {
+    $result: ();
+    $index: if($index < 0, length($list) + $index + 1, $index);
+
+    @for $i from 1 through length($list) {
+      @if $i != $index {
+        $result: append($result, nth($list, $i), comma);
+      }
+    }
+  }
+
+  @return $result;
+}
+//
+// Font Face
+// --------------------------------------------------------
+@mixin font-face($name, $path, $weight: 400, $style: normal, $exts: woff ttf) {
+  $src: null;
+
+  $extmods: (
+    eot: '?',
+  );
+
+  $formats: (
+    otf: 'opentype',
+    ttf: 'truetype',
+  );
+
+  @each $ext in $exts {
+    $extmod: if(
+      map-has-key($extmods, $ext),
+      $ext + map-get($extmods, $ext),
+      $ext
+    );
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append(
+      $src,
+      url(quote($path + '/' + $name + '.' + $extmod)) format(quote($format)),
+      comma
+    );
+  }
+  $src: rm-nth($src, 1);
+
+  @font-face {
+    font-family: quote($name);
+    src: $src;
+    font-style: $style;
+    font-weight: $weight;
+  }
+  // @font-face {
+  //     font-family: $name;
+  //     src: url('#{$path}/#{$name}.eot');
+  //     src: url('#{$path}/#{$name}.eot?#iefix') format('embedded-opentype'),
+  //          url('#{$path}/#{$name}.woff') format('woff'),
+  //          url('#{$path}/#{$name}.ttf') format('truetype'),
+  //          url('#{$path}/#{$name}.svg##{$name}') format('svg');
+  //     font-weight: $weight;
+  //     font-style: $style;
+  // }
+}

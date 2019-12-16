@@ -1,0 +1,83 @@
+/*
+// Base Stylings
+// ------------------------------------------------ */
+
+/*==== General ====*/
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  font: $font-weight #{$font-size}/#{$line-height} $font-base;
+  font-size: 1.6rem;
+  color: $font-color;
+  background: $body-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: all $transition-duration ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+a[href^='tel'] {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.5rem;
+
+    // &::before {
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 0;
+    //   color: color(blue);
+    //   font-size: 20px;
+    //   transform: translateY(-50%);
+    //   content: '•';
+    // }
+  }
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ordered-list;
+
+  li {
+    &::before {
+      // position: absolute;
+      // top: 50%;
+      // left: 0;
+      margin-right: 0.3rem;
+      color: color(blue);
+      counter-increment: ordered-list;
+      content: counter(ordered-list) '.';
+    }
+  }
+}

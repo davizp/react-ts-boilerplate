@@ -5,13 +5,14 @@ import { Employees } from '../models';
 export function fetchEmployees() {
   return {
     type: Types.FETCH_EMPLOYEES,
-  }
+  };
 }
 
-
-export function successEmployees(employees: Employees[]){
+export function successEmployees(employees: Employees[]) {
   return {
     type: Types.SUCCESS_EMPLOYEES,
-    employees,
-  }
+    payload: {
+      employees,
+    },
+  };
 }
